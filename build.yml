@@ -1,4 +1,4 @@
-name: Build Orange Pi Zero Firmware
+name: Build OpenWRT Firmware
 
 on:
   push:
@@ -51,42 +51,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Update feeds
+      - name: 执行编译脚本
         run: |
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
-
-      - name: 加载自定义配置文件
-        run: |
-          ls
-          mv orangepi.config .config
-          echo "======================="
-          ls -sh .config
-          make defconfig
-          echo "======================="
-          ls -sh .config
-
-      - name: Download packages
-        run: make download -j16
-
-      - name: Compile firmware
-        run: |
-          make -j$(nproc) || make -j1 V=s
-          echo "======================="
-          echo "Space usage:"
-          echo "======================="
-          df -h
-          echo "======================="
-          du -h --max-depth=1 ./ --exclude=build_dir --exclude=bin
-          du -h --max-depth=1 ./build_dir
-          du -h --max-depth=1 ./bin
+          chmod +x ./build.sh
+          ./build.sh
 
       - name: 显示打包文件
         run: |
-          ls -R ./bin/targets/
+          ls -R ./openwrt/bin/targets/
 
       - name: Upload firmware
         uses: actions/upload-artifact@v4
         with:
           name: OpenWrt_firmware
-          path: ./bin/targets/
+          path: ./openwrt/bin/targets/
