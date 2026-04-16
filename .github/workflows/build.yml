@@ -12,12 +12,12 @@ jobs:
       OPENWRT_IMAGE_NAME: openwrt-orangepi-zero
 
     steps:
-
+    
       - name: Space cleanup and Initialization environment
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          docker rmi `docker images -q`
+          docker image prune -f
           sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d /usr/local/lib/android
           sudo -E apt-mark hold grub-efi-amd64-signed
           sudo -E apt update
@@ -45,9 +45,6 @@ jobs:
           haskell: true
           large-packages: true
           swap-storage: true
-
-      - name: Checkout repository
-        uses: actions/checkout@v4
 
       - name: 执行编译脚本
         run: |
