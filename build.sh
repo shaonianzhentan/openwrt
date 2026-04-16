@@ -4,30 +4,33 @@ set -e  # 遇到错误立即停止，避免编译出问题
 # 拉取编译镜像
 git clone https://github.com/Lienol/openwrt.git
 
-# 使用自定义配置
-cp -f .config openwrt/.config
-
-
+# 切换到源代码目录
 cd openwrt
 
-# 定义要添加的源内容
-FEED_CONTENT1="src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main"
-FEED_CONTENT2="src-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main"
+# 使用自定义配置
+cp -f ../.config .config
 
-# 检查并追加第一条源
-if ! grep -qxF "$FEED_CONTENT1" feeds.conf.default; then
-    echo "$FEED_CONTENT1" >> feeds.conf.default
-    echo "✅ 已添加：passwall_packages 源"
+# 2. 将你的自定义脚本/文件拷贝到源码目录
+if [ -d "../files" ]; then
+    echo "✅ 发现自定义 files 目录，正在同步到源码..."
+    cp -rf ../files/ ./
+    chmod -R +x files/etc/uci-defaults/
 else
-    echo "ℹ️ 已存在：passwall_packages 源，跳过添加"
+    echo "⚠️ 未发现 files 目录，将使用固件默认网络配置"
 fi
 
-# 检查并追加第二条源
-if ! grep -qxF "$FEED_CONTENT2" feeds.conf.default; then
-    echo "$FEED_CONTENT2" >> feeds.conf.default
-    echo "✅ 已添加：passwall_luci 源"
+# 检查项目根目录下是否存在自定义的 feeds.conf
+if [ -f "../feeds.conf" ]; then
+    echo "合并自定义 Feeds 到 feeds.conf.default..."
+    # 换行追加，确保格式正确
+    echo "" >> feeds.conf.default
+    cat ../feeds.conf >> feeds.conf.default
+    
+    # 再次去重（可选但推荐）
+    sort -u feeds.conf.default -o feeds.conf.default
+    echo "✅ Feeds 合并完成"
 else
-    echo "ℹ️ 已存在：passwall_luci 源，跳过添加"
+    echo "⚠️ 未发现自定义 feeds.conf，跳过合并"
 fi
 
 echo -e "\n🎉 操作完成！当前 feeds.conf.default 内容："

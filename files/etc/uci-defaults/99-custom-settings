@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# 1. 配置 LAN 口静态 IP 和网关
+uci -q batch << EOT
+set network.lan.proto='static'
+set network.lan.ipaddr='192.168.0.222'
+set network.lan.netmask='255.255.255.0'
+set network.lan.gateway='192.168.0.1'
+set network.lan.dns='114.114.114.114 8.8.8.8'
+commit network
+EOT
+
+# 2. 修改主机名
+uci set system.@system[0].hostname='OpenWRT'
+uci commit system
+
+# 3. 强制重启网络使配置生效
+/etc/init.d/network restart
+
+exit 0
