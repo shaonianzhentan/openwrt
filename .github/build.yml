@@ -1,8 +1,6 @@
 name: Build OpenWRT Firmware
 
 on:
-  push:
-    branches: [ 24.10 ]
   workflow_dispatch:
 
 jobs:
