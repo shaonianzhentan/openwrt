@@ -2,7 +2,7 @@
 set -e  # 遇到错误立即停止，避免编译出问题
 
 # 拉取编译镜像
-git clone https://github.com/Lienol/openwrt.git
+git clone --depth 1 https://github.com/Lienol/openwrt.git
 
 # 切换到源代码目录
 cd openwrt
@@ -37,7 +37,7 @@ echo -e "\n🎉 操作完成！当前 feeds.conf.default 内容："
 cat feeds.conf.default
 
 # 安装cloudflare优选IP
-git clone https://github.com/stevenjoezhang/luci-app-cloudflarespeedtest.git package/luci-app-cloudflarespeedtest
+git clone --depth 1 https://github.com/stevenjoezhang/luci-app-cloudflarespeedtest.git package/luci-app-cloudflarespeedtest
 
 # 更新
 ./scripts/feeds update -a

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# 1. 配置 LAN 口静态 IP 和网关
+# 1. 配置 LAN 口静态 IP 和网关（你的配置完全正确，保留不动）
 uci -q batch << EOT
 set network.lan.proto='static'
 set network.lan.ipaddr='192.168.0.222'
@@ -10,11 +10,23 @@ set network.lan.dns='114.114.114.114 8.8.8.8'
 commit network
 EOT
 
-# 2. 修改主机名
+# 2. 修改主机名（保留）
 uci set system.@system[0].hostname='OpenWRT'
 uci commit system
 
-# 3. 强制重启网络使配置生效
+# ==================== 旁路由必须添加的 3 行 ====================
+# 关闭 DHCP 服务（避免和主路由冲突）
+uci set dhcp.lan.ignore=1
+uci commit dhcp
+
+# 开启防火墙转发（旁路由核心）
+uci set firewall.@defaults[0].forward=ACCEPT
+uci commit firewall
+# ==============================================================
+
+# 3. 重启所有服务
 /etc/init.d/network restart
+/etc/init.d/firewall restart
+/etc/init.d/dnsmasq restart
 
 exit 0

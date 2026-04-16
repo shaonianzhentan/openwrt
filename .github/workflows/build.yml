@@ -8,8 +8,6 @@ jobs:
     runs-on: ubuntu-22.04
     env:
       TZ: Asia/Shanghai
-      OPENWRT_TARGET: sunxi/cortexa7
-      OPENWRT_IMAGE_NAME: openwrt-orangepi-zero
 
     steps:
     
@@ -30,7 +28,7 @@ jobs:
           sudo -E timedatectl set-timezone "Asia/Shanghai"
 
       - name: Checkout OpenWrt
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@main
