@@ -7,6 +7,8 @@ openwrt编译笔记
 # 初始化源代码
 sh init.sh
 
+cd immortalwrt
+
 # ./scripts/feeds update -a && ./scripts/feeds install -a
 
 make menuconfig

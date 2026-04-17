@@ -1,8 +1,8 @@
-rm -rf openwrt
+rm -rf immortalwrt
 
-git clone --depth 1 https://github.com/Lienol/openwrt.git
+git clone -b openwrt-25.12 --single-branch --filter=blob:none https://github.com/immortalwrt/immortalwrt
 
-cd openwrt
+cd immortalwrt
 
 cp -f ../config/.config .config
 

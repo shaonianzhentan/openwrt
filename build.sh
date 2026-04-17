@@ -2,10 +2,10 @@
 set -e  # 遇到错误立即停止，避免编译出问题
 
 # 拉取编译镜像
-git clone --depth 1 https://github.com/Lienol/openwrt.git
+git clone -b openwrt-25.12 --single-branch --filter=blob:none https://github.com/immortalwrt/immortalwrt
 
 # 切换到源代码目录
-cd openwrt
+cd immortalwrt
 
 # 使用自定义配置
 cp -f ../config/.config .config
