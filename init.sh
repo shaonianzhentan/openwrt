@@ -1,6 +1,6 @@
 rm -rf openwrt
 
-git clone -b 24.10 --depth 1 https://github.com/Lienol/openwrt.git
+git clone --depth 1 https://github.com/Lienol/openwrt.git
 
 cd openwrt
 

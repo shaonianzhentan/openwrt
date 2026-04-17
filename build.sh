@@ -2,7 +2,7 @@
 set -e  # 遇到错误立即停止，避免编译出问题
 
 # 拉取编译镜像
-git clone -b 24.10 --depth 1 https://github.com/Lienol/openwrt.git
+git clone --depth 1 https://github.com/Lienol/openwrt.git
 
 # 切换到源代码目录
 cd openwrt
