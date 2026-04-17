@@ -51,10 +51,10 @@ jobs:
 
       - name: 显示打包文件
         run: |
-          ls -R ./openwrt/bin/
+          ls -R ./immortalwrt/bin/
 
       - name: Upload firmware
         uses: actions/upload-artifact@v7
         with:
           name: OpenWrt_firmware
-          path: ./openwrt/bin/targets/
+          path: ./immortalwrt/bin/targets/
