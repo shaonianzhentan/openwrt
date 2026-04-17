@@ -2,10 +2,12 @@
 openwrt编译笔记
 
 
-编译配置文件
+手动初始化配置文件
 ```bash
+# 初始化源代码
+sh init.sh
 
-./scripts/feeds update -a && ./scripts/feeds install -a
+# ./scripts/feeds update -a && ./scripts/feeds install -a
 
 make menuconfig
 ```

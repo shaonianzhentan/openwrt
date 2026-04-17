@@ -2,13 +2,13 @@
 set -e  # 遇到错误立即停止，避免编译出问题
 
 # 拉取编译镜像
-git clone --depth 1 https://github.com/Lienol/openwrt.git
+git clone -b 24.10 --depth 1 https://github.com/Lienol/openwrt.git
 
 # 切换到源代码目录
 cd openwrt
 
 # 使用自定义配置
-cp -f ../.config .config
+cp -f ../config/.config .config
 
 # 2. 将你的自定义脚本/文件拷贝到源码目录
 if [ -d "../files" ]; then

@@ -1,10 +1,10 @@
 rm -rf openwrt
 
-git clone --depth 1 https://github.com/Lienol/openwrt.git
+git clone -b 24.10 --depth 1 https://github.com/Lienol/openwrt.git
 
 cd openwrt
 
-cp -f ../.config .config
+cp -f ../config/.config .config
 
 cat ../feeds.conf >> feeds.conf.default
 sort -u feeds.conf.default -o feeds.conf.default
@@ -21,3 +21,5 @@ fi
 rm -rf package/luci-app-cloudflarespeedtest
 
 git clone --depth 1 https://github.com/stevenjoezhang/luci-app-cloudflarespeedtest.git package/luci-app-cloudflarespeedtest
+
+./scripts/feeds update -a && ./scripts/feeds install -a
