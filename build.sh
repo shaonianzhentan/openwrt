@@ -43,9 +43,6 @@ git clone --depth 1 https://github.com/stevenjoezhang/luci-app-cloudflarespeedte
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
-# 初始化配置
-make defconfig
-
 # Download packages
 make download -j16
 
