@@ -58,3 +58,9 @@ jobs:
         with:
           name: OpenWrt_firmware
           path: ./immortalwrt/bin/targets/
+
+      - name: Upload buildinfo
+        uses: actions/upload-artifact@v7
+        with:
+          name: OpenWrt_buildinfo
+          path: ./immortalwrt/bin/targets/sunxi/cortexa7/config.buildinfo
