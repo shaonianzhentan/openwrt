@@ -46,21 +46,21 @@ jobs:
 
       - name: 执行编译脚本
         run: |
-          chmod +x ./build.sh
-          ./build.sh
+          chmod +x ./build_openwrt.sh
+          ./build_openwrt.sh
 
       - name: 显示打包文件
         run: |
-          ls -R ./immortalwrt/bin/
+          ls -R ./openwrt/bin/
 
       - name: Upload firmware
         uses: actions/upload-artifact@v7
         with:
           name: OpenWrt_firmware
-          path: ./immortalwrt/bin/targets/
+          path: ./openwrt/bin/targets/
 
       - name: Upload buildinfo
         uses: actions/upload-artifact@v7
         with:
           name: OpenWrt_buildinfo
-          path: ./immortalwrt/bin/targets/sunxi/cortexa7/config.buildinfo
+          path: ./openwrt/bin/targets/sunxi/cortexa7/config.buildinfo
