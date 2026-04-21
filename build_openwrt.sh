@@ -2,7 +2,7 @@
 set -e  # 遇到错误立即停止，避免编译出问题
 
 # 拉取编译镜像
-git clone -b openwrt-25.12 --single-branch --filter=blob:none https://github.com/openwrt/openwrt
+git clone -b openwrt-23.05 --single-branch --filter=blob:none https://github.com/openwrt/openwrt
 
 # 切换到源代码目录
 cd openwrt

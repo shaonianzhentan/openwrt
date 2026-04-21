@@ -1,10 +1,10 @@
 rm -rf openwrt
 
-git clone -b openwrt-25.12 --single-branch --filter=blob:none https://github.com/openwrt/openwrt
+git clone -b openwrt-23.05 --single-branch --filter=blob:none https://github.com/openwrt/openwrt
 
 cd openwrt
 
-cp -f ../config/.config .config
+cp -f ../config/openwrt.config .config
 
 cat ../feeds.conf >> feeds.conf.default
 sort -u feeds.conf.default -o feeds.conf.default
