@@ -4,7 +4,7 @@ git clone -b openwrt-24.10 --single-branch --filter=blob:none https://github.com
 
 cd immortalwrt
 
-cp -f ../config/.config .config
+cp -f ../config/immortalwrt.config .config
 
 cat ../feeds.conf >> feeds.conf.default
 sort -u feeds.conf.default -o feeds.conf.default

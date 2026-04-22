@@ -46,8 +46,8 @@ jobs:
 
       - name: 执行编译脚本
         run: |
-          chmod +x ./build.sh
-          ./build.sh
+          chmod +x ./build_immortalwrt.sh
+          ./build_immortalwrt.sh
 
       - name: 显示打包文件
         run: |

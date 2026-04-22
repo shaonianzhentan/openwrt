@@ -8,7 +8,7 @@ git clone -b openwrt-24.10 --single-branch --filter=blob:none https://github.com
 cd immortalwrt
 
 # 使用自定义配置
-cp -f ../config/.config .config
+cp -f ../config/immortalwrt.config .config
 
 # 2. 将你的自定义脚本/文件拷贝到源码目录
 if [ -d "../files" ]; then
