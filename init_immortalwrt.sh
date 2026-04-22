@@ -6,9 +6,6 @@ cd immortalwrt
 
 cp -f ../config/immortalwrt.config .config
 
-cat ../feeds.conf >> feeds.conf.default
-sort -u feeds.conf.default -o feeds.conf.default
-
 # 2. 将你的自定义脚本/文件拷贝到源码目录
 if [ -d "../files" ]; then
     echo "✅ 发现自定义 files 目录，正在同步到源码..."
