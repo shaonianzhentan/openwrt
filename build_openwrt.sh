@@ -45,6 +45,7 @@ git clone --depth 1 https://github.com/stevenjoezhang/luci-app-cloudflarespeedte
 make download -j16
 
 # 编译
+echo "✅ 开始编译"
 make -j$(nproc) || make -j1 V=s
 echo "======================="
 echo "Space usage:"

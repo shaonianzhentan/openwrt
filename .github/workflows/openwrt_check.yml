@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-22.04
     env:
       TZ: Asia/Shanghai
@@ -44,7 +44,7 @@ jobs:
           large-packages: true
           swap-storage: true
 
-      - name: 执行编译脚本
+      - name: 执行检查脚本
         run: |
           chmod +x ./check_openwrt.sh
           ./check_openwrt.sh
