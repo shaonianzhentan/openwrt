@@ -1,6 +1,6 @@
 rm -rf openwrt
 
-git clone -b openwrt-23.05 --single-branch --filter=blob:none https://github.com/openwrt/openwrt
+git clone -b openwrt-24.10 --single-branch --filter=blob:none https://github.com/openwrt/openwrt
 
 cd openwrt
 
@@ -14,6 +14,21 @@ if [ -d "../files" ]; then
 else
     echo "⚠️ 未发现 files 目录，将使用固件默认网络配置"
 fi
+
+# 检查项目根目录下是否存在自定义的 feeds.conf
+if [ -f "../feeds.conf" ]; then
+    echo "合并自定义 Feeds 到 feeds.conf.default..."
+    # 换行追加，确保格式正确
+    echo "" >> feeds.conf.default
+    cat ../feeds.conf >> feeds.conf.default
+    
+    echo "✅ Feeds 合并完成"
+else
+    echo "⚠️ 未发现自定义 feeds.conf，跳过合并"
+fi
+
+echo -e "\n🎉 操作完成！当前 feeds.conf.default 内容："
+cat feeds.conf.default
 
 rm -rf package/luci-app-cloudflarespeedtest
 
