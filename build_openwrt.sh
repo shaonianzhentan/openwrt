@@ -46,6 +46,9 @@ make download -j16
 
 # 编译
 echo "✅ 开始编译"
+make defconfig
+yes "" | make oldconfig
+
 make -j$(nproc) || make -j1 V=s
 echo "======================="
 echo "Space usage:"
